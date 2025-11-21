@@ -17,11 +17,11 @@ def cap_extreme_speeds(df, max_speed=MAX_SPEED_THRESHOLD):
     df['Speed'] = df['Speed'].clip(upper=max_speed)
     return df
 
-def extract_file_pattern_from_path(filename):
+def extract_filename_pattern(filename):
     """Extract the canonical filename pattern used in lifespan metadata.
 
     Args:
-        file_path: Absolute or relative path to a raw CSV file.
+        filename: name of the raw CSV file.
 
     Returns:
         str | None: A pattern like `/<YYYYMMDD>_piworm<NN>_<recording>` if the
@@ -41,7 +41,7 @@ def extract_file_pattern_from_path(filename):
 
 def trim_after_death(df, lifespan_df):
     """remove all rows after frame of death for a worm"""
-    worm_pattern = extract_file_pattern_from_path(df["source_file"].iloc[0])
+    worm_pattern = extract_filename_pattern(df["source_file"].iloc[0])
 
     if worm_pattern is None:
         raise ValueError(f"Could not extract pattern from {df['source_file'].iloc[0]}")
