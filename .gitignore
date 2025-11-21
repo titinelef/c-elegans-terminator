@@ -3,6 +3,7 @@
 .DS_store
 
 TERBINAFINE/
+preprocessed_data/
 
 # Environnement virtuel
 .venv/
