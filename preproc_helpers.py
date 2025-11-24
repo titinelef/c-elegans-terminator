@@ -139,7 +139,7 @@ def calculate_turning_angle(df):
     return df
 
 def normalize_trajectory_data(df):
-    """Normalize coordinates to [0,1] and turning angles to [-1,1]"""
+    """Normalize coordinates to [0,1], turning angles to [-1,1]"""
     df_normalized = df.copy()
     
     # Global coordinate bounds from the dataset
@@ -156,5 +156,33 @@ def normalize_trajectory_data(df):
     
     if 'turning_angle' in df.columns:
         df_normalized['turning_angle'] = df['turning_angle'] / 180.0
+
+    if 'Speed' in df.columns:
+        speed_mean = np.mean(df['Speed'])
+        speed_std = np.std(df['Speed'])
+        df_normalized['Speed'] = (df['Speed'] - speed_mean) / speed_std
     
     return df_normalized
+
+def fill_nans_with_next_value(df):
+    """
+    Replace NaNs in each column with the next valid value in that column.
+    
+    Args:
+        features: worm dataframe
+    
+    Returns:
+        cleaned_features: same shape, NaNs replaced
+    """
+    cleaned = df.bfill()
+    return cleaned
+
+def save_worm_csv(df, filename, output_dir):
+    """Save a worm dataframe into the output folder"""
+    
+    
+    # Build full path
+    out_path = os.path.join(output_dir, filename)
+
+    # Save
+    df.to_csv(out_path, index=False)
