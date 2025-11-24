@@ -65,7 +65,7 @@ def split_into_segments(df, segment_length = SEGMENT_LENGTH):
         list[pandas.DataFrame]: One dataframe per unique segment with a
         `segment_index` column added.
     """
-    df['Segment'] = (df['GlobalFrame'] -2 ) // SEGMENT_LENGTH # all size SEGMENT_LENGTH except last one
+    df['Segment'] = (df['GlobalFrame'] - 2 ) // SEGMENT_LENGTH # all size SEGMENT_LENGTH except last one
     segments = []
     for segment_id in sorted(df['Segment'].unique()):
         segment_df = df[df['Segment'] == segment_id].copy()
