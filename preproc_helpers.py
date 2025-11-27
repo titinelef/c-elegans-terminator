@@ -164,6 +164,35 @@ def normalize_trajectory_data(df):
     
     return df_normalized
 
+def rename_worm_id(df):
+    """ 
+    Extract canonical worm_id from the source_file column and store it as a new column. 
+    """
+    df_renamed =df.copy()
+    worm_ids = []
+
+    for filename in df_renamed['source_file'] :
+
+        # convert to string to avoid 'float not iterable' errors
+        filename_str = str(filename)
+
+        if 'coordinates_highestspeed_' in filename_str:
+            match = re.search(r'coordinates_highestspeed_(\d{8})_(\d+)_(\d+)', filename_str)
+
+            if match:
+                date, worm_num, recording_num = match.groups()
+                worm_num_padded = worm_num.zfill(2)
+                piworm = f'piworm{worm_num_padded}'
+                worm_id =f'{date}_{piworm}_{recording_num}'
+                worm_ids.append(worm_id)
+            else :
+                worm_ids.append(None)
+        else :
+            worm_ids.append(None)
+
+    df_renamed["worm_id"] = worm_ids
+    return df_renamed
+
 def fill_nans_with_next_value(df):
     """
     Replace NaNs in each column with the next valid value in that column.
