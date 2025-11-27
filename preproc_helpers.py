@@ -201,9 +201,22 @@ def fill_nans_with_next_value(df):
         features: worm dataframe
     
     Returns:
-        cleaned_features: same shape, NaNs replaced
+        cleaned_2: same shape, NaNs replaced
     """
-    cleaned = df.bfill()
+    cleaned = df.copy()
+
+    # Skip empty or 1-frame segments (can't compute speed or turning angle)
+    if len(cleaned) < 2:
+        return None
+
+    # Fill NaNs using backward then forward fill
+    cleaned = cleaned.bfill().ffill()
+
+    # Still some NaNs left? Fill numeric with 0
+    for col in ["X", "Y", "Speed", "turning_angle"]:
+        if col in cleaned.columns:
+            cleaned[col] = cleaned[col].fillna(0)
+
     return cleaned
 
 def save_worm_csv(df, filename, output_dir):
