@@ -1,0 +1,3 @@
+GlobalFrame,Timestamp,Speed,X,Y,condition,source_file,Segment_index,turning_angle,worm_id,Segment
+21602.0,2024-09-02T15:43:02.007389,3.8009453202654857,0.5184331797235022,0.6562872360279656,terbinafine,coordinates_highestspeed_20240827_9_2_with_time_speed.csv,24.0,0.0,20240827_piworm09_2,24.0
+21603.0,2024-09-02T15:43:04.002541,3.8009453202654857,0.5120160213618158,0.6702269692923899,terbinafine,coordinates_highestspeed_20240827_9_2_with_time_speed.csv,24.0,0.0,20240827_piworm09_2,24.0
