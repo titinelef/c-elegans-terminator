@@ -1,0 +1,11 @@
+/_pycache_/
+
+.DS_store
+
+TERBINAFINE/
+preprocessed_data/
+test_data/
+
+# Environnement virtuel
+.venv/
+.env/
