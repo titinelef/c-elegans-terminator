@@ -3,11 +3,11 @@ pandas
 scipy
 scikit-learn
 imbalanced-learn
-torch
 tslearn
 matplotlib
 seaborn
-PyWavelets
-joblib
 tqdm
 opencv-python
+xgboost
+catboost
+tensorflow
