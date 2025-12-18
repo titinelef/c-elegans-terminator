@@ -50,6 +50,7 @@ This external dataset is processed and evaluated at the end of the notebook: dru
 ├── preprocessed_data/                   # Generated after running preprocessing.ipynb
 │   ├── segments/                        # Segmented time-series windows
 │   └── full/                            # Full-length trajectories
+├── feature_data/                        # use for Near-death classification "minimum feature"
 │
 ├── Report.md                            # Details and results 
 ├── requirements.txt                    
