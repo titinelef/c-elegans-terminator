@@ -70,12 +70,21 @@ A critical design constraint across all experiments is **worm-level isolation**:
 
 
 - HistGradientBoosting achieves the strongest and most stable grouped cross-validation performance, while XGBoost reaches slightly higher peak performance after threshold tuning.
+- Final results :
+
+| Model           | Optimal threshold | Validation F1 |
+|-----------------|-------------------|---------------|
+| XGBoost         | 0.25              | 0.642         |
+| SVM RBF + PCA   | 0.30              | 0.640         |
+| ExtraTrees      | 0.45              | 0.640         |
+| HistGB          | 0.45              | 0.638         |
+
 - Performance depends strongly on the near-death definition:
   - For small \(N\), F1-scores are low (≈ 0.2–0.3)
   - Performance increases steadily as \(N\) increases
   - Best F1-scores reach **≈ 0.72–0.76** for \(N=30\)–40 segments
 
-- Analysis across normalized life stages shows that classification performance is substantially higher in late and very late life, reflecting stronger behavioral degradation signals closer to death.
+  
 
 
 ### Attempts (`death_min_features.ipynb` and `death_proximity_min_features.ipynb`)
