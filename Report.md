@@ -133,11 +133,16 @@ Using only a single feature (mean speed) already achieved reasonable performance
   - Metrics: Mean Absolute Error (MAE), \(R^2\)
 
 #### Results
+| Modèle / Méthode              | Description                               | MAE    | R²     |
+|-----------------------------|-------------------------------------------|--------|--------|
+| Baseline (Mean Regressor)   | Predict only the mean                     | 0.2439 | 0.0000 |
+| Bi-LSTM (900 frames)        | full sequence                             | 0.1811 | 0.3442 |
+| Bi-LSTM + Slicing (T = 650) | Slicing (keep the last 650 frames)        | 0.1713 | 0.4043 |
+| Bi-LSTM + Subsampling (1/4) | Subsampling (keep one frame every four)   | 0.1664 | 0.4239 |
 
-- The mean regressor shows no predictive power (\(R^2 \approx 0\)).
+- The mean regressor shows no predictive power 
 - The Bi-LSTM substantially outperforms the baseline:
   - MAE ≈ **0.16** (≈ 16% of total lifespan)
-  - \(R^2 \approx 0.42\)
 - These results indicate that short-term locomotor dynamics alone contain a strong signal of physiological age, despite biological variability and the limited temporal context of each segment.
 
 
