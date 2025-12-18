@@ -70,7 +70,7 @@ A critical design constraint across all experiments is **worm-level isolation**:
 
 
 - HistGradientBoosting achieves the strongest and most stable grouped cross-validation performance, while XGBoost reaches slightly higher peak performance after threshold tuning.
-- Final results :
+- Decision threshold optimisation on validation set :
 
 | Model           | Optimal threshold | Validation F1 |
 |-----------------|-------------------|---------------|
@@ -79,9 +79,16 @@ A critical design constraint across all experiments is **worm-level isolation**:
 | ExtraTrees      | 0.45              | 0.640         |
 | HistGB          | 0.45              | 0.638         |
 
+- Final evaluation on test set :
+
+| Model   | Accuracy | F1-score | AUC  |
+|---------|---------:|---------:|-----:|
+| XGBoost | 0.774    | 0.684    | 0.854 |
+| HistGB  | 0.768    | 0.677    | 0.854 |
+
 - Performance depends strongly on the near-death definition:
-  - For small \(N\), F1-scores are low (≈ 0.2–0.3)
-  - Performance increases steadily as \(N\) increases
+  - For small \(N\), F1-scores are low (≈ 0.2–0.3) and accuracies (ACC) are high (0.7-0.8)
+  - F1 Performance increases and accuracy (ACC) decreases steadily as \(N\) increases
   - Best F1-scores reach **≈ 0.72–0.76** for \(N=30\)–40 segments
 
   
